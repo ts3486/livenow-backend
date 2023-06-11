@@ -21,5 +21,5 @@ from venues import urls as venue_urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
-    path('livenow/', include(venue_urls)),
+    path('app/', include(venue_urls)),
 ]

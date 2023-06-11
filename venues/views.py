@@ -25,7 +25,7 @@ class VenueApiView(APIView):
         '''
         data = {
             'name': request.data.get('name'), 
-            'created_at': request.data.get('created_at'), 
+            "owner": request.data.get("owner"),
             'user': request.user.id
         }
         serializer =VenueSerializer(data=data)
