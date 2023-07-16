@@ -5,6 +5,6 @@ from .views import (
 )
 
 urlpatterns = [
-    path('api', VenueApiView.as_view()),
-    path('api/<int:venue_id>', VenueDetailApiView.as_view()),
+    path('venue', VenueApiView.as_view()),
+    path('venue/<int:venue_id>', VenueDetailApiView.as_view()),
 ]
