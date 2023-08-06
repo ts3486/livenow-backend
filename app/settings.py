@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-3f%4)@_eekjnk63p7i0&ox+32e6b9no8)e7u9#2fw0g5k!y1gv
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'corsheaders',
     'drf_yasg',
     'app',
     'venues',
@@ -51,7 +52,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
+
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = (
+  'http://localhost:3000',
+)
 
 ROOT_URLCONF = 'app.urls'
 
@@ -69,6 +76,10 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000',
 ]
 
 WSGI_APPLICATION = 'app.wsgi.application'
