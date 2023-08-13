@@ -4,10 +4,11 @@ from rest_framework import status
 from rest_framework import permissions
 from .models import Venue
 from .serializers import VenueSerializer
+from rest_framework.permissions import AllowAny
 
 class VenueApiView(APIView):
     # add permission to check if user is authenticated
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes=[permissions.AllowAny],
 
     # 1. List all
     def getAll(self, request, *args, **kwargs):
@@ -39,7 +40,7 @@ class VenueApiView(APIView):
 
 class VenueDetailApiView(APIView):
     # add permission to check if user is authenticated
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes=[permissions.AllowAny],
 
     def get_object(self, venue_id, user_id):
         '''
