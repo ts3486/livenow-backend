@@ -20,6 +20,8 @@ from django.urls import path, include, re_path
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from authentication import urls as auth_urls
+from users import urls as user_urls
 from venues import urls as venue_urls
 
 schema_view = get_schema_view(
@@ -37,8 +39,9 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api-auth/', include('rest_framework.urls')),
-    path('api/', include(venue_urls)),
+    path('auth/', include(auth_urls)),
+    path('user/', include(user_urls)),
+    path('venues/', include(venue_urls)),
     re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
 ]
 
