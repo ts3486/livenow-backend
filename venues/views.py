@@ -1,23 +1,20 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework import permissions
 from .models import Venue
 from .serializers import VenueSerializer
-from rest_framework.permissions import AllowAny
 
 class VenueApiView(APIView):
-    # add permission to check if user is authenticated
-    permission_classes=[permissions.AllowAny],
-
     # 1. List all
-    def getAll(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         '''
         List all the venue items for given requested user
         '''
-        venues =Venue.objects.filter(user = request.user.id)
+
+        # use filter to restrict to user's filter: e.g filter(user = request.user.id)
+        venues =Venue.objects
         serializer =VenueSerializer(venues, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.data,  status=status.HTTP_200_OK)
     
 
     # 2. Create
@@ -39,9 +36,6 @@ class VenueApiView(APIView):
     
 
 class VenueDetailApiView(APIView):
-    # add permission to check if user is authenticated
-    permission_classes=[permissions.AllowAny],
-
     def get_object(self, venue_id, user_id):
         '''
         Helper method to get the object with given venue_id, and user_id
