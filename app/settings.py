@@ -49,7 +49,10 @@ INSTALLED_APPS = [
     'drf_yasg',
     'app',
     'users',
+    'performers',
+    'owners',
     'venues',
+    'ratings'
 
 ]
 
